@@ -1,64 +1,62 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { categories } from '../data/categories';
-import { services } from '../data/services';
 import { customerReviews } from '../data/initialData';
-import { ServiceCard } from '../components/ServiceCard';
-import { TrustSection } from '../components/TrustSection';
-import { BeforeAfterShowcase } from '../components/BeforeAfterShowcase';
 import {
-  Search,
   Sparkles,
   ArrowRight,
   ShieldCheck,
   Star,
   CheckCircle2,
   Calendar,
-  Smile,
+  Clock,
+  Phone,
+  MessageSquare,
+  Award,
+  Users,
+  Check,
+  X,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Cpu,
+  BadgePercent,
+  HeartHandshake
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
-  const { setViewMode, setActiveCategory, setIsSearchOpen, setSearchQuery } = useApp();
+  const { setViewMode, setActiveCategory } = useApp();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-
-  const mostBooked = services.filter((s) =>
-    ['sofa-cleaning-3seater', 'floor-deep-cleaning-machine', 'ac-service', 'chimney-deep-cleaning'].includes(s.id)
-  );
 
   const faqs = [
     {
-      q: 'Do I need to supply any cleaning equipment or chemicals?',
-      a: 'Not at all. Our verified Expert cleaning team arrives fully equipped with industrial single-disc floor scrubbers, vacuum machines, ladders, microfiber tools, and hospital-grade eco-friendly cleaning compounds.'
+      q: 'Do I need to supply any cleaning equipment, machines, or chemicals?',
+      a: 'No, not at all. Our verified Expert cleaning team arrives with industrial single-disc floor scrubbers (175 RPM), injection-extraction upholstery shampooers, HEPA vacuum systems, ladders, and hospital-grade eco-safe compounds. You do not need to provide anything except access to water and electricity.'
     },
     {
-      q: 'How long does a full home deep cleaning take?',
-      a: 'A typical 2 BHK to 3 BHK apartment takes between 3.5 to 5 hours. We dispatch a specialized 2 to 4 member team depending on the square footage to ensure thorough detailing without keeping you waiting all day.'
+      q: 'Why should I choose Expert Professional Services instead of a local house maid or freelance cleaner?',
+      a: 'Local house maids only do superficial surface wiping with domestic brooms and mops. They cannot extract trapped dust mites from mattresses, dissolve hardened kitchen chimney grease, or strip deep-seated floor grout dirt. Expert Professional Services uses 1.5 HP rotary floor machines, high-pressure jet pumps, and hospital-grade chemicals handled by background-verified full-time technicians with a 100% satisfaction guarantee.'
     },
     {
-      q: 'Are the cleaning agents safe for kids and pets?',
-      a: 'Yes, 100%. We strictly utilize non-toxic, biodegradable Bayer and Diversey cleaning formulations that leave zero hazardous residue or irritating chemical odors.'
+      q: 'Are the cleaning formulations safe for babies, pregnant women, and pets?',
+      a: 'Yes, 100%. We strictly utilize certified Bayer, Diversey, and 3M biodegradable formulations. Our compounds leave zero toxic chemical fumes, zero pungent smells, and zero hazardous chemical residues. Your home remains safe to occupy immediately after service.'
     },
     {
-      q: 'What if I am not satisfied with any area cleaned?',
-      a: 'We offer an ironclad 100% Satisfaction Guarantee. Inspect the premises during final handover. If any spot is missed, we will re-clean it immediately or send a technician back within 24 hours free of cost.'
+      q: 'What is your 100% Satisfaction Guarantee and 24-Hour Free Re-clean policy?',
+      a: 'We invite you to inspect every corner before final handover and payment. If you notice any area that does not meet our high standards, our specialists re-clean it on the spot. If you notice an issue within 24 hours, we dispatch a technician back to your doorstep free of cost.'
     },
     {
-      q: 'Can I reschedule my booking?',
-      a: 'Yes, you can easily reschedule to any available date or time slot directly through "My Bookings" with zero penalty up to 2 hours prior to the appointment.'
+      q: 'How does your ₹X transparent pricing work?',
+      a: 'We believe in 100% honesty. You receive a clear, upfront quote of ₹X before work commences. Our technicians are strictly prohibited from demanding surprise doorstep fees, extra chemical charges, or transportation add-ons.'
+    },
+    {
+      q: 'Can I reschedule or cancel my booking without penalty?',
+      a: 'Yes. You can reschedule to any date or time slot, or cancel your booking with zero fees directly up to 2 hours before the scheduled appointment.'
     }
   ];
 
-  const handleSearchClick = (keyword?: string) => {
-    if (keyword) {
-      setSearchQuery(keyword);
+  const handleExploreServices = (categoryId?: string) => {
+    if (categoryId) {
+      setActiveCategory(categoryId);
     }
-    setIsSearchOpen(true);
-  };
-
-  const handleCategoryClick = (catId: string) => {
-    setActiveCategory(catId);
     setViewMode('catalog');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -66,132 +64,112 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-16 sm:space-y-24 pb-16">
       
-      {/* HERO SECTION */}
-      <section className="relative pt-10 sm:pt-16 pb-12 sm:pb-20 bg-gradient-to-b from-[#F5F1EE] via-[#FAF9F6] to-[#FAF9F6] border-b border-[#E7E2DC]">
+      {/* 1. HERO SECTION - BRAND INTRODUCTION */}
+      <section className="relative pt-12 sm:pt-20 pb-16 sm:pb-24 bg-gradient-to-b from-[#F7F4F0] via-[#FAF9F6] to-[#FAF9F6] border-b border-[#E7E2DC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Left Hero Copy */}
+            {/* Left Hero Content */}
             <div className="lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#DDD0C8] shadow-subtle">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-xs font-bold text-[#323232] tracking-wide uppercase">
-                  Top Rated Doorstep Hygiene in 6 Metros
+                  Doorstep Deep Cleaning & Hygiene Specialist
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#323232] tracking-tight leading-[1.1]">
-                Your home. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#323232] via-[#4A4A4A] to-[#6B6B6B]">
-                  Professionally cleaned.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#323232] tracking-tight leading-[1.12]">
+                Expert Professional Services. <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#323232] via-[#525252] to-[#737373]">
+                  Industrial-Grade Deep Cleaning for Discerning Homes.
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-[#6B6B6B] max-w-xl leading-relaxed">
-                Reliable, background-verified cleaning professionals for every corner of your home. Heavy machine floor scrubbing, upholstery shampooing, and spot descaling.
+              <p className="text-base sm:text-lg text-[#525252] max-w-2xl leading-relaxed">
+                Led by <strong>M. Pranay</strong>, Expert Professional Services delivers precision home and commercial hygiene. We replace superficial sweeping with heavy single-disc rotary machine scrubbing, injection-extraction upholstery shampooing, and hospital-grade sanitization.
               </p>
 
-              {/* Large Hero Search Bar */}
-              <div className="p-2 sm:p-2.5 bg-white rounded-2xl border border-[#DDD0C8] shadow-card max-w-xl">
-                <div
-                  onClick={() => handleSearchClick()}
-                  className="flex items-center gap-3 px-3 py-2 cursor-pointer rounded-xl hover:bg-[#FAF9F6] transition-colors"
+              {/* Primary Call to Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={() => handleExploreServices()}
+                  className="px-6 sm:px-8 py-3.5 rounded-2xl bg-[#323232] hover:bg-black text-white text-sm sm:text-base font-bold tracking-wide transition-all shadow-card flex items-center gap-2 group"
                 >
-                  <Search className="w-5 h-5 text-[#323232] flex-shrink-0" />
-                  <span className="text-sm sm:text-base text-[#8C8C8C] flex-1 select-none truncate">
-                    What do you need cleaned today?
-                  </span>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setViewMode('catalog');
-                    }}
-                    className="px-4 sm:px-5 py-2.5 rounded-xl bg-[#323232] hover:bg-black text-white text-xs sm:text-sm font-bold tracking-wide transition-all shadow-sm flex items-center gap-1.5"
-                  >
-                    <span>Browse</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
+                  <span>Explore All 12 Services & Transformations</span>
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </button>
+
+                <a
+                  href="tel:7036065361"
+                  className="px-5 py-3.5 rounded-2xl bg-white hover:bg-[#FAF9F6] border border-[#DDD0C8] text-[#323232] text-sm sm:text-base font-bold transition-all shadow-subtle flex items-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-[#323232]" />
+                  <span>Call 7036065361</span>
+                </a>
               </div>
 
-              {/* Popular Search Badges */}
-              <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-[#6B6B6B]">
-                <span className="font-semibold text-[#323232]">Popular:</span>
-                {['Sofa Cleaning', 'Mattress Cleaning', 'Floor Machine', 'Chimney Deep Clean', 'AC Service'].map((term) => (
-                  <button
-                    key={term}
-                    onClick={() => handleSearchClick(term)}
-                    className="px-2.5 py-1 rounded-lg bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] hover:bg-[#FAF9F6] text-[#4A4A4A] transition-colors"
-                  >
-                    {term}
-                  </button>
-                ))}
-              </div>
-
-              {/* Direct Booking Helpline Callout */}
-              <div className="p-3.5 rounded-2xl bg-white border border-[#DDD0C8] flex flex-wrap items-center justify-between gap-3 shadow-subtle max-w-xl">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+              {/* Founder Verified Helpline Callout */}
+              <div className="p-4 rounded-2xl bg-white border border-[#DDD0C8] shadow-subtle max-w-xl flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#DDD0C8] text-[#323232] flex items-center justify-center font-black text-sm">
                     MP
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-[#323232] block">M. Pranay — Expert Professional Services</span>
-                    <span className="text-[11px] text-[#6B6B6B]">Direct Helpline: 7036065361 / 6300631794</span>
+                    <span className="text-xs font-bold text-[#323232] block">
+                      M. Pranay — Founder & Operations Lead
+                    </span>
+                    <span className="text-[11px] text-[#6B6B6B]">
+                      Direct Helplines: +91 7036065361 / +91 6300631794
+                    </span>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-2">
-                  <a
-                    href="tel:7036065361"
-                    className="px-3 py-1.5 rounded-xl border border-[#323232] bg-[#323232] text-white text-xs font-bold hover:bg-black transition-colors"
-                  >
-                    Call Now
-                  </a>
                   <a
                     href="https://wa.me/917036065361"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-800 text-xs font-bold hover:bg-emerald-100 transition-colors"
+                    className="px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs font-bold transition-colors flex items-center gap-1.5"
                   >
-                    WhatsApp
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>WhatsApp</span>
                   </a>
                 </div>
               </div>
 
-              {/* Stats Bar */}
-              <div className="pt-4 grid grid-cols-3 gap-4 border-t border-[#E7E2DC]/80 max-w-lg">
+              {/* Trust Stats Bar */}
+              <div className="pt-4 grid grid-cols-3 gap-6 border-t border-[#E7E2DC] max-w-lg">
                 <div>
-                  <span className="text-xl sm:text-2xl font-black text-[#323232] block">1.8M+</span>
-                  <span className="text-xs text-[#8C8C8C]">Homes Cleaned</span>
+                  <span className="text-2xl sm:text-3xl font-black text-[#323232] block">1.8M+</span>
+                  <span className="text-xs text-[#737373] font-medium">Homes Restored</span>
                 </div>
                 <div>
-                  <span className="text-xl sm:text-2xl font-black text-[#323232] block">4.88 ★</span>
-                  <span className="text-xs text-[#8C8C8C]">Customer Rating</span>
+                  <span className="text-2xl sm:text-3xl font-black text-[#323232] block">4.88 ★</span>
+                  <span className="text-xs text-[#737373] font-medium">Verified Rating</span>
                 </div>
                 <div>
-                  <span className="text-xl sm:text-2xl font-black text-[#323232] block">100%</span>
-                  <span className="text-xs text-[#8C8C8C]">Verified Partners</span>
+                  <span className="text-2xl sm:text-3xl font-black text-[#323232] block">100%</span>
+                  <span className="text-xs text-[#737373] font-medium">In-House Staff</span>
                 </div>
               </div>
 
             </div>
 
-            {/* Right Hero Visual Cards */}
+            {/* Right Visual Assurance Card */}
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-3xl overflow-hidden border border-[#DDD0C8] shadow-card bg-white p-3">
                 <img
                   src="/images/hero-clean.webp"
-                  alt="Professional Home Cleaning"
-                  className="w-full h-80 sm:h-96 object-cover rounded-2xl"
+                  alt="Expert Professional Cleaning Team"
+                  className="w-full h-80 sm:h-[420px] object-cover rounded-2xl"
                 />
                 
                 {/* Floating Rating Pill */}
-                <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md px-3.5 py-2 rounded-xl shadow-subtle border border-[#E7E2DC] flex items-center gap-2 text-xs font-bold text-[#323232]">
-                  <div className="flex text-amber-500">
-                    <Star className="w-3.5 h-3.5 fill-current" />
-                  </div>
-                  <span>4.88 Star Quality Standard</span>
+                <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-subtle border border-[#E7E2DC] flex items-center gap-2 text-xs font-bold text-[#323232]">
+                  <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                  <span>4.88 Star Standard Across 12 Services</span>
                 </div>
 
                 {/* Floating Assurance Pill */}
@@ -207,149 +185,331 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* BEFORE & AFTER SHOWCASE FOR ALL 12 SERVICES */}
-      <BeforeAfterShowcase />
-
-      {/* POPULAR CATEGORIES GRID */}
+      {/* 2. WHO WE ARE - INTRODUCTION TO THE COMPANY & FOUNDER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B6B6B] block mb-1">
-              Complete Services Catalog
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
-              Explore Cleaning Categories
-            </h2>
-          </div>
-          <button
-            onClick={() => setViewMode('catalog')}
-            className="text-xs sm:text-sm font-bold text-[#323232] hover:text-black flex items-center gap-1 group"
-          >
-            <span>View All Packages</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </div>
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E7E2DC] shadow-subtle">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF9F6] border border-[#DDD0C8] text-xs font-bold text-[#323232] uppercase tracking-wider">
+                <span>Who We Are</span>
+              </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => handleCategoryClick(cat.id)}
-              className="group p-4 rounded-2xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] hover:shadow-card transition-all text-left flex flex-col justify-between"
-            >
-              <div>
-                <div className="w-full h-28 rounded-xl overflow-hidden mb-3 bg-[#FAF9F6] border border-[#E7E2DC]">
-                  <img
-                    src={cat.bannerImage}
-                    alt={cat.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#323232] tracking-tight leading-snug">
+                Restoring True Hygiene, Not Just Cosmetic Dusting.
+              </h2>
+
+              <p className="text-sm sm:text-base text-[#525252] leading-relaxed">
+                Founded by <strong>M. Pranay</strong>, <strong>Expert Professional Services</strong> was established with one uncompromising mission: to give homeowners, commercial offices, and property managers a trustworthy, scientific alternative to chaotic local domestic cleaning.
+              </p>
+
+              <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                Every fabric sofa collects body oils and dust mites; every tiled floor absorbs dirt in porous grout lines; and kitchen chimneys trap flammable grease. Ordinary wiping cannot cure these problems. We deploy high-torque 175 RPM rotary scrubbers, injection-extraction vacuum systems, and non-hazardous hospital-grade chemical formulations to restore surfaces to their original, showroom-grade beauty.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E2DC] flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span className="text-xs font-bold text-[#323232]">12 Specialized Cleaning Services</span>
                 </div>
-                <h3 className="text-xs sm:text-sm font-bold text-[#323232] group-hover:text-black leading-snug">
-                  {cat.name}
-                </h3>
+                <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E2DC] flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span className="text-xs font-bold text-[#323232]">Zero Surprise Fees — Transparent ₹X Rates</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E2DC] flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span className="text-xs font-bold text-[#323232]">Police & Background Verified Technicians</span>
+                </div>
+                <div className="p-3.5 rounded-xl bg-[#FAF9F6] border border-[#E7E2DC] flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span className="text-xs font-bold text-[#323232]">100% Safe For Children & Household Pets</span>
+                </div>
               </div>
-              <div className="mt-2 pt-2 border-t border-[#FAF9F6] flex items-center justify-between text-[11px] text-[#8C8C8C]">
-                <span>{cat.count} options</span>
-                <span className="text-[#323232] font-semibold group-hover:underline">Explore</span>
+            </div>
+
+            <div className="lg:col-span-5 bg-[#FAF9F6] p-6 sm:p-8 rounded-2xl border border-[#E7E2DC] space-y-4 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-[#323232] text-[#DDD0C8] flex items-center justify-center mx-auto shadow-sm">
+                <Award className="w-8 h-8" />
               </div>
-            </button>
-          ))}
+              <h3 className="text-lg font-bold text-[#323232]">Our Quality Pledge</h3>
+              <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                "We never leave a client's property until every agreed square foot is inspected, approved, and signed off. If you are not completely delighted, we re-clean it free of charge."
+              </p>
+              <div className="pt-2 border-t border-[#EAE6E1]">
+                <span className="text-xs font-bold text-[#323232] block">M. Pranay</span>
+                <span className="text-[11px] text-[#8C8C8C]">Founder & Managing Director</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS (3 Simple Steps) */}
+      {/* 3. WHY PEOPLE NEED TO CHOOSE THEM - 6 VALUE PILLARS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FAF9F6] border border-[#DDD0C8] text-xs font-bold text-[#323232] uppercase tracking-wider mb-2">
+            <span>The Expert Advantage</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#323232] tracking-tight">
+            Why People Need To Choose Us
+          </h2>
+          <p className="text-xs sm:text-sm text-[#6B6B6B] mt-2 leading-relaxed">
+            Here is why over 1.8 Million households and corporate facilities choose Expert Professional Services instead of ordinary cleaners.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          {/* Pillar 1 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center justify-center">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              1. 100% Hospital-Grade Safe Chemistry
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              We exclusively use certified Bayer, Diversey, and 3M biodegradable formulations. Zero toxic fumes, zero harsh acids, and safe around crawling babies and pets.
+            </p>
+          </div>
+
+          {/* Pillar 2 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#FAF9F6] text-[#323232] border border-[#DDD0C8] flex items-center justify-center">
+              <Cpu className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              2. Heavy Industrial Machinery
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              We bring 1.5 HP single-disc rotary scrubbers operating at 175 RPM, high-pressure AC jet pumps, and injection-extraction shampooers that pull dirt deep from fabric foam.
+            </p>
+          </div>
+
+          {/* Pillar 3 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-neutral-100 text-[#323232] border border-[#E7E2DC] flex items-center justify-center">
+              <Users className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              3. Police-Verified In-House Specialists
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              Never unvetted day-laborers. Our cleaning technicians undergo comprehensive police background verification, health checks, and professional training in uniform.
+            </p>
+          </div>
+
+          {/* Pillar 4 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-800 border border-amber-200 flex items-center justify-center">
+              <BadgePercent className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              4. Transparent & Honest ₹X Quotations
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              No hidden doorstep surprises or inflated bills. What you see is what you pay. Standardized ₹X pricing with zero sudden charges for stairs or machinery.
+            </p>
+          </div>
+
+          {/* Pillar 5 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center justify-center">
+              <HeartHandshake className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              5. Ironclad 100% Satisfaction Guarantee
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              Inspect the cleaning with our team lead. If any surface does not sparkle or any stain was missed, we re-clean it immediately or within 24 hours free of charge.
+            </p>
+          </div>
+
+          {/* Pillar 6 */}
+          <div className="p-6 rounded-3xl bg-white border border-[#E7E2DC] hover:border-[#DDD0C8] shadow-subtle hover:shadow-card transition-all space-y-3">
+            <div className="w-12 h-12 rounded-2xl bg-[#DDD0C8]/60 text-[#323232] border border-[#DDD0C8] flex items-center justify-center">
+              <Phone className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-[#323232]">
+              6. Direct Founder Accountability
+            </h3>
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              Have a special request, large property, or urgent requirement? Founder M. Pranay is directly accessible on phone and WhatsApp to guarantee smooth execution.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 4. COMPARISON TABLE: EXPERT PROFESSIONAL SERVICES VS LOCAL UNTRAINED CLEANERS */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#FAF9F6] rounded-3xl p-6 sm:p-10 border border-[#E7E2DC]">
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
+              Expert Professional Services vs. Local Cleaners
+            </h2>
+            <p className="text-xs sm:text-sm text-[#6B6B6B] mt-1">
+              See why our standards protect your home, health, and expensive furniture.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr className="border-b border-[#DDD0C8]">
+                  <th className="py-3.5 px-4 font-bold text-[#323232]">Quality Dimension</th>
+                  <th className="py-3.5 px-4 font-black text-emerald-900 bg-emerald-50/80 rounded-t-xl">
+                    Expert Professional Services
+                  </th>
+                  <th className="py-3.5 px-4 font-bold text-neutral-500">
+                    Local Maids / Unorganized Cleaners
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#E7E2DC]">
+                <tr>
+                  <td className="py-3.5 px-4 font-semibold text-[#323232]">Machinery & Equipment</td>
+                  <td className="py-3.5 px-4 bg-emerald-50/40 text-emerald-950 font-medium">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      1.5 HP rotary scrubbers, UV extractors & jet pumps
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-4 text-neutral-500">
+                    <span className="flex items-center gap-1.5">
+                      <X className="w-4 h-4 text-red-500" />
+                      Basic domestic broom, manual mop & rag
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="py-3.5 px-4 font-semibold text-[#323232]">Cleaning Chemistry</td>
+                  <td className="py-3.5 px-4 bg-emerald-50/40 text-emerald-950 font-medium">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      Bayer, Diversey, 3M hospital-grade compounds
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-4 text-neutral-500">
+                    <span className="flex items-center gap-1.5">
+                      <X className="w-4 h-4 text-red-500" />
+                      Harsh hydrochloric acids, damaging detergents
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="py-3.5 px-4 font-semibold text-[#323232]">Technician Verification</td>
+                  <td className="py-3.5 px-4 bg-emerald-50/40 text-emerald-950 font-medium">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      Police background checked & certified staff
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-4 text-neutral-500">
+                    <span className="flex items-center gap-1.5">
+                      <X className="w-4 h-4 text-red-500" />
+                      Unverified daily wage temporary laborers
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="py-3.5 px-4 font-semibold text-[#323232]">Satisfaction Guarantee</td>
+                  <td className="py-3.5 px-4 bg-emerald-50/40 text-emerald-950 font-medium">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      100% Satisfaction + Free 24hr re-clean warranty
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-4 text-neutral-500">
+                    <span className="flex items-center gap-1.5">
+                      <X className="w-4 h-4 text-red-500" />
+                      Zero accountability after payment is taken
+                    </span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td className="py-3.5 px-4 font-semibold text-[#323232]">Pricing Transparency</td>
+                  <td className="py-3.5 px-4 bg-emerald-50/40 text-emerald-950 font-medium">
+                    <span className="flex items-center gap-1.5 font-bold">
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      Fixed, clear ₹X quotes with zero hidden fees
+                    </span>
+                  </td>
+                  <td className="py-3.5 px-4 text-neutral-500">
+                    <span className="flex items-center gap-1.5">
+                      <X className="w-4 h-4 text-red-500" />
+                      Unpredictable doorstep bargaining & extra charges
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. HOW IT WORKS - 3 SEAMLESS STEPS */}
       <section className="bg-white py-14 sm:py-20 border-y border-[#E7E2DC]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-[#6B6B6B] block mb-1">
-              Seamless 3-Step Process
+              Fast & Hassle-Free
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
-              How Expert Professional Services Works
+              How Booking Works
             </h2>
             <p className="text-xs sm:text-sm text-[#6B6B6B] mt-2">
-              Book in under 60 seconds with instant slot confirmation.
+              Get an immaculate home in 3 simple steps.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            
-            {/* Step 1 */}
-            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3 relative">
-              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/50 px-3 py-1 rounded-xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3">
+              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/60 px-3 py-1 rounded-xl">
                 01
               </span>
-              <h3 className="text-lg font-bold text-[#323232]">Choose a service</h3>
+              <h3 className="text-lg font-bold text-[#323232]">Choose Your Service</h3>
               <p className="text-xs text-[#6B6B6B] leading-relaxed">
-                Select from transparent packages for full apartments, sofas, bathrooms, or kitchens with upfront fixed pricing.
+                Browse our 12 specialized services with before/after photos and transparent ₹X pricing.
               </p>
             </div>
 
-            {/* Step 2 */}
-            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3 relative">
-              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/50 px-3 py-1 rounded-xl">
+            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3">
+              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/60 px-3 py-1 rounded-xl">
                 02
               </span>
-              <h3 className="text-lg font-bold text-[#323232]">Pick your time</h3>
+              <h3 className="text-lg font-bold text-[#323232]">Pick Date & Time Slot</h3>
               <p className="text-xs text-[#6B6B6B] leading-relaxed">
-                Choose any date and preferred time slot that suits your routine. Same-day emergency slots available.
+                Select a convenient slot that suits your schedule. Instant confirmation with zero advance deposit required.
               </p>
             </div>
 
-            {/* Step 3 */}
-            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3 relative">
-              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/50 px-3 py-1 rounded-xl">
+            <div className="p-6 rounded-2xl bg-[#FAF9F6] border border-[#E7E2DC] text-center space-y-3">
+              <span className="inline-block text-2xl font-black text-[#323232] bg-[#DDD0C8]/60 px-3 py-1 rounded-xl">
                 03
               </span>
-              <h3 className="text-lg font-bold text-[#323232]">Relax while we clean</h3>
+              <h3 className="text-lg font-bold text-[#323232]">Inspect & Pay When Satisfied</h3>
               <p className="text-xs text-[#6B6B6B] leading-relaxed">
-                Our equipped, background-verified specialists arrive with heavy machinery and handle complete deep cleaning.
+                Our machine-equipped technicians arrive, transform your space, and you only pay after your complete inspection.
               </p>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* MOST BOOKED SERVICES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#6B6B6B] block mb-1">
-              Customer Favorites
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
-              Most Booked Cleaning Services
-            </h2>
-          </div>
-          <button
-            onClick={() => setViewMode('catalog')}
-            className="text-xs sm:text-sm font-bold text-[#323232] hover:text-black flex items-center gap-1 group"
-          >
-            <span>Explore All 24 Services</span>
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {mostBooked.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
-      </section>
-
-      {/* TRUST SECTION */}
-      <TrustSection />
-
-      {/* CUSTOMER REVIEWS */}
+      {/* 6. VERIFIED CUSTOMER REVIEWS */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-xl mx-auto mb-10">
           <span className="text-xs font-bold uppercase tracking-wider text-[#6B6B6B] block mb-1">
-            Real Experiences
+            Real Feedback
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
-            Loved by 1.8M+ Discerning Households
+            Trusted by 1.8M+ Discerning Clients
           </h2>
         </div>
 
@@ -382,11 +542,11 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* FREQUENTLY ASKED QUESTIONS */}
+      {/* 7. FREQUENTLY ASKED QUESTIONS */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <span className="text-xs font-bold uppercase tracking-wider text-[#6B6B6B] block mb-1">
-            Got Questions?
+            Questions Answered
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#323232] tracking-tight">
             Frequently Asked Questions
@@ -420,6 +580,42 @@ export const HomePage: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* 8. FINAL CALL TO ACTION BANNER */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-gradient-to-r from-[#323232] to-[#1F1F1F] p-8 sm:p-14 text-white text-center space-y-6 shadow-card border border-neutral-700">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DDD0C8]/20 border border-[#DDD0C8]/40 text-xs font-bold text-[#DDD0C8] uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-[#DDD0C8]" />
+            <span>Ready for a Spotless Transformation?</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl font-black tracking-tight max-w-2xl mx-auto leading-tight">
+            Experience the Expert Clean Difference Today.
+          </h2>
+
+          <p className="text-xs sm:text-sm text-neutral-300 max-w-xl mx-auto leading-relaxed">
+            View all 12 specialized services, inspect real before-and-after photos, and book your verified cleaning specialists in under 60 seconds.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <button
+              onClick={() => handleExploreServices()}
+              className="px-8 py-3.5 rounded-2xl bg-[#DDD0C8] hover:bg-[#cfc1b7] text-[#323232] text-sm sm:text-base font-black tracking-wide shadow-sm transition-all flex items-center gap-2"
+            >
+              <span>Explore All 12 Services & Results</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+
+            <a
+              href="tel:7036065361"
+              className="px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/30 text-white text-sm sm:text-base font-bold transition-all flex items-center gap-2"
+            >
+              <Phone className="w-4 h-4 text-[#DDD0C8]" />
+              <span>Call Helpline: 7036065361</span>
+            </a>
+          </div>
         </div>
       </section>
 

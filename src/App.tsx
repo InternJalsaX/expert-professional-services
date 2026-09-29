@@ -2,7 +2,7 @@ import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { CatalogPage } from './pages/CatalogPage';
+import { ServicesPage } from './pages/ServicesPage';
 import { HomePage } from './pages/HomePage';
 import { MyBookingsPage } from './pages/MyBookingsPage';
 import { SearchOverlay } from './components/SearchOverlay';
@@ -20,7 +20,7 @@ const MainContent: React.FC = () => {
       <Header />
       
       <div className="flex-1">
-        {viewMode === 'catalog' && <CatalogPage />}
+        {viewMode === 'catalog' && <ServicesPage />}
         {viewMode === 'landing' && <HomePage />}
         {viewMode === 'bookings' && <MyBookingsPage />}
       </div>
